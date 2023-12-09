@@ -2,18 +2,19 @@ package com.volka.dynamicbatch.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.volka.dynamicbatch.entity.compositekey.SchdJobMappKey;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
 /**
  * @author : volka <volka5091@gmail.com>
  * description    : 스케줄 : job 커맨드 매핑
  */
 @Data
+@NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  // JPA에서 lazy관련 에러 날 경우 사용
 @Entity
 @Table(name = "schd_job_cmnd_mapp")

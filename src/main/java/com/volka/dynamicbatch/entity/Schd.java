@@ -5,26 +5,22 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
 /**
  * @author : volka <volka5091@gmail.com>
  * description    : 스케줄 기준정보
  */
-@SuperBuilder
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  // JPA에서 lazy관련 에러 날 경우 사용
 @Entity
 @Table(name = "schd")
 public class Schd {
     @Id
     @Column(name = "schd_cd")
-    private int schdCd;
+    private Integer schdCd;
     @Column(name = "schd_cron")
     private String schdCron;
     @Column(name = "schd_nm")

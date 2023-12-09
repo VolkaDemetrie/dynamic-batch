@@ -1,20 +1,19 @@
 package com.volka.dynamicbatch.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-import lombok.Getter;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
 /**
  * @author : volka <volka5091@gmail.com>
  * description    : 사용자 정보
  */
-@SuperBuilder
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  // JPA에서 lazy관련 에러 날 경우 사용
 @Entity  // 객체와 테이블 매핑
 @Table(name = "user")  // 테이블 지정
