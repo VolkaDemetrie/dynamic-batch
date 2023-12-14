@@ -1,4 +1,4 @@
-package com.volka.dynamicbatch.core.config.dto;
+package com.volka.dynamicbatch.core.dto;
 
 import com.volka.dynamicbatch.core.constant.ResultCode;
 import lombok.Getter;

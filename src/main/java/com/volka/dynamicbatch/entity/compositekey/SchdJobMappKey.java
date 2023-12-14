@@ -14,11 +14,9 @@ import java.io.Serializable;
 @Data
 @Embeddable
 public class SchdJobMappKey implements Serializable {
-    @Id
     @Column(name = "schd_cd")
     private int schdCd;
 
-    @Id
     @Column(name = "job_cmnd")
     private String jobCmnd;
 }

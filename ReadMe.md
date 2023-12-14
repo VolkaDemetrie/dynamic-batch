@@ -1,7 +1,10 @@
 # Getting Started
 
-### Reference Documentation
 
+### 동적 배치 프로그램 [Dynamic Batch Program] 
+volka5091@gmail.com
+
+### Reference Documentation
 For further reference, please consider the following sections:
 
 * [Official Gradle documentation](https://docs.gradle.org)

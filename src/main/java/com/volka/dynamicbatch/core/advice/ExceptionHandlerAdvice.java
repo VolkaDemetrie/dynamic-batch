@@ -1,6 +1,6 @@
 package com.volka.dynamicbatch.core.advice;
 
-import com.volka.dynamicbatch.core.config.dto.ResponseDTO;
+import com.volka.dynamicbatch.core.dto.ResponseDTO;
 import com.volka.dynamicbatch.core.config.exception.BizException;
 import com.volka.dynamicbatch.core.config.exception.InvokeException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

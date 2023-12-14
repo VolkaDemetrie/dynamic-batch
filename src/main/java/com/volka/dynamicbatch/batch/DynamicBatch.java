@@ -2,9 +2,11 @@ package com.volka.dynamicbatch.batch;
 
 import com.volka.dynamicbatch.batch.command.CommandInvoker;
 import com.volka.dynamicbatch.batch.dto.Task;
+import com.volka.dynamicbatch.batch.handler.BatchErrorHandler;
 import com.volka.dynamicbatch.core.config.exception.BizException;
 import com.volka.dynamicbatch.core.constant.DomainCode;
 import com.volka.dynamicbatch.core.util.code.CodeUtil;
+import com.volka.dynamicbatch.entity.JobCmnd;
 import com.volka.dynamicbatch.entity.RunHst;
 import com.volka.dynamicbatch.entity.Schd;
 import com.volka.dynamicbatch.entity.SchdJobCmndMapp;
@@ -41,20 +43,21 @@ public class DynamicBatch {
     private static final List<Task> TASK_LIST = new ArrayList<>();
     private static ThreadPoolTaskScheduler taskScheduler;
 
+    private final BatchErrorHandler batchErrorHandler;
 
     private final CodeUtil codeUtil;
 
     private final JobCmndRepository jobCmndRepository;
     private final SchdJobCmndMappRepository mappRepository;
     private final SchdRepository schdRepository;
-
     private final RunHstRepository runHstRepository;
 
     @PostConstruct
     private void init() {
         try {
-            List<Schd> schdList = Optional.of(schdRepository.findAll()).orElseThrow(() -> new BizException(""));
-            List<SchdJobCmndMapp> mappList = Optional.of(mappRepository.findAll()).orElseThrow(() -> new BizException(""));
+
+            List<Schd> schdList = Optional.of(schdRepository.findAll()).orElseThrow(() -> new BizException("BTH0000"));
+            List<SchdJobCmndMapp> mappList = Optional.of(mappRepository.findAll()).orElseThrow(() -> new BizException("BTH0001"));
 
             for (Schd schd : schdList) {
 
@@ -76,6 +79,8 @@ public class DynamicBatch {
 
                 TASK_LIST.add(taskBuilder.jobList(jobList).build());
             }
+
+            startBatch();
 
         } catch (BizException e) {
             log.error("dynamic batch init failed :: {} :: {}", e.getErrCd(), e.getErrMsg());
@@ -105,12 +110,13 @@ public class DynamicBatch {
             if (TASK_LIST.isEmpty()) {
                 log.info("=== no available job ====");
             } else {
-
-                if (taskScheduler != null && taskScheduler.isRunning()) throw new BizException("");
+                log.info("=== batch start ===");
+                if (taskScheduler != null && taskScheduler.isRunning()) throw new BizException("BTH0001");
 
                 taskScheduler = new ThreadPoolTaskScheduler();
                 taskScheduler.setPoolSize(TASK_LIST.size());
                 taskScheduler.setDaemon(true);
+                taskScheduler.setErrorHandler(batchErrorHandler);
                 taskScheduler.initialize();
 
                 for (Task task : TASK_LIST) {
