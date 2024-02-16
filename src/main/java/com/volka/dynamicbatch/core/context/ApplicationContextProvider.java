@@ -1,4 +1,4 @@
-package com.volka.dynamicbatch.batch.command;
+package com.volka.dynamicbatch.core.context;
 
 import lombok.NonNull;
 import org.springframework.beans.BeansException;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * description    : 앱 컨텍스트 provider
  */
 @Component
-public class AppContextProvider implements ApplicationContextAware {
+public class ApplicationContextProvider implements ApplicationContextAware {
 
     private static ApplicationContext appContext;
 
@@ -20,7 +20,7 @@ public class AppContextProvider implements ApplicationContextAware {
         appContext = applicationContext;
     }
 
-    static ApplicationContext getAppContext() {
+    public ApplicationContext getAppContext() {
         return appContext;
     }
 }
