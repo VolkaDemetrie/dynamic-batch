@@ -1,1 +1,47 @@
 
+server:
+  port: 8091
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:postgresql://:5432/cbm
+      driver-class-name: org.postgresql.Driver
+      username:
+      password:
+      maximum-pool-size: 20
+      max-lifetime: 30000
+      connection-timeout: 30000
+  servlet:
+    multipart:
+      max-file-size: 15MB
+  devtools:
+    restart:
+      enabled: false
+
+mybatis:
+  mapper-locations: "classpath:mybatis/mapper/*/*Mapper.xml"
+  config-location: "classpath:mybatis/MybatisConfig.xml"
+
+finger:
+  file:
+    location: "/home/volka/batch/files"
+    size: 1231231
+    allow-ext-set: [ ".jpg", ".jpeg", ".png", ".xlsx", ".xls", ".pdf", ".pptx" ]
+
+
+  auth:
+    jwt:
+      header: Authorization
+      secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa
+      token-validity-in-seconds: 1800
+      #TODO 토큰 만료시간 1일 설정. 추후 변경
+      expire-duration: 86400000

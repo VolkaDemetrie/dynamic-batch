@@ -1,6 +1,5 @@
 package com.volka.dynamicbatch.batch.handler;
 
-import com.volka.dynamicbatch.core.util.CommunicateUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ErrorHandler;
@@ -13,10 +12,9 @@ import org.springframework.util.ErrorHandler;
 @Component
 public class BatchErrorHandler implements ErrorHandler {
 
-    private final CommunicateUtil communicateUtil;
 
     @Override
     public void handleError(Throwable t) {
-        //TODO : file beats로 elk 연동
+
     }
 }

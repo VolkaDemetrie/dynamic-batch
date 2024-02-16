@@ -1,4 +1,4 @@
-package com.volka.dynamicbatch.batch.command.monitoring;
+package com.volka.dynamicbatch.batch.command.messenger;
 
 import com.volka.dynamicbatch.batch.AbstactCommand;
 import com.volka.dynamicbatch.core.config.exception.InvokeException;
@@ -6,15 +6,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * @author : volka <volka5091@gmail.com>
- * description    :
+ * 메신저 GW 서버 토큰 업데이트
+ *
+ * @author volka
  */
 @Slf4j
 @Component
-public class MonitoringCommand extends AbstactCommand {
+public class MessengerTokenCommand extends AbstactCommand {
     @Override
     protected void invoke() throws InvokeException, Exception {
-        log.info("=== monitoring invoke ===");
+
     }
 
     @Override

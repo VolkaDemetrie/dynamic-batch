@@ -5,14 +5,14 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author : volka <volka5091@gmail.com>
- * description    : 스케줄 기준정보
+ * description    : job command 기준정보
  */
 @Data
 @NoArgsConstructor
-public class Schd {
-    private Integer schdCd;
-    private String schdCron;
-    private String schdNm;
+public class JobCommand {
+    private String jobCommand;
+    private String jobNm;
+    private String jobDesc;
     private String regId;
     private String regDt;
     private String modId;

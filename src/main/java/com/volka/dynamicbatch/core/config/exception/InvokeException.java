@@ -1,6 +1,6 @@
 package com.volka.dynamicbatch.core.config.exception;
 
-import com.volka.dynamicbatch.batch.command.AbstactCommand;
+import com.volka.dynamicbatch.batch.AbstactCommand;
 import com.volka.dynamicbatch.core.constant.ResultCode;
 import lombok.Getter;
 
@@ -9,7 +9,7 @@ import lombok.Getter;
  * description    : 커맨드 실행 예외
  */
 @Getter
-public class InvokeException extends Exception {
+public class InvokeException extends RuntimeException {
     private final String errCd;
     private final String errMsg;
     private final AbstactCommand command;
@@ -20,9 +20,10 @@ public class InvokeException extends Exception {
         this.command = command;
     }
 
-    public InvokeException(Throwable e, AbstactCommand command) {
+    public InvokeException(Throwable t, AbstactCommand command) {
+        super(t);
         this.errCd = ResultCode.FAIL.getCode();
-        this.errMsg = e.getLocalizedMessage();
+        this.errMsg = t.getLocalizedMessage();
         this.command = command;
     }
 }

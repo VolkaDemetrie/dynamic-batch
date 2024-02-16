@@ -1,6 +1,5 @@
-package com.volka.dynamicbatch.batch.command;
+package com.volka.dynamicbatch.batch;
 
-import com.volka.dynamicbatch.core.config.exception.BizException;
 import com.volka.dynamicbatch.core.config.exception.InvokeException;
 
 /**
@@ -10,9 +9,8 @@ import com.volka.dynamicbatch.core.config.exception.InvokeException;
 public abstract class AbstactCommand {
     protected int maxRetry; //최대 재실행 횟수
     protected int tryCnt; //현재 실행 카운트
-//    protected AbstactCommand command;
 
-    protected abstract void invoke() throws BizException, InvokeException, Exception;
+    protected abstract void invoke() throws InvokeException, Exception;
 
     protected abstract void backUp();
 

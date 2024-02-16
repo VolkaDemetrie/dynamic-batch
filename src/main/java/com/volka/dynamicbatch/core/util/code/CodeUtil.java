@@ -2,7 +2,7 @@ package com.volka.dynamicbatch.core.util.code;
 
 import com.volka.dynamicbatch.core.config.exception.BizException;
 import com.volka.dynamicbatch.core.constant.DomainCode;
-import com.volka.dynamicbatch.repository.RunHstRepository;
+import com.volka.dynamicbatch.mapper.job.JobRunHstMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class CodeUtil {
 
     private static final CodeGenerator cdGenerator = CodeGenerator.getInstance();
-    private final RunHstRepository runHstRepository;
+    private final JobRunHstMapper jobRunHstMapper;
 
     /**
      * 시스템 아이디 생성
@@ -30,7 +30,7 @@ public class CodeUtil {
 
         switch (domainCode) {
             case RUN_HST:
-                sysId = cdGenerator.generateSysId(domainCode, runHstRepository.getSeq());
+                sysId = cdGenerator.generateSysId(domainCode, jobRunHstMapper.selectSeq());
                 break;
             default:
                 throw new BizException(""); //TODO : undefined code 관련 에러코드 정의

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.volka.dynamicbatch.mapper.job.SchdJobCommandMappMapper">
+    <select id="selectAll" resultType="SchdJobCommandMapp">
+        SELECT
+            A.schd_cd
+            ,A.job_command
+            ,A.step
+            ,A.retry
+            ,A.reg_id
+            ,A.reg_dt
+            ,A.mod_id
+            ,A.mod_dt
+        FROM cbm_schd_job_command_mapp A
+        ORDER BY A.schd_cd, A.job_command, A.step
+    </select>
+</mapper>
+
+

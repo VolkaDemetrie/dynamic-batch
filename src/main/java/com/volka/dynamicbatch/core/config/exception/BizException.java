@@ -1,7 +1,6 @@
 package com.volka.dynamicbatch.core.config.exception;
 
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author : volka <volka5091@gmail.com>
@@ -21,6 +20,7 @@ public class BizException extends RuntimeException {
         this.errMsg = errMsg;
     }
     public BizException(String errCd, Throwable throwable) {
+        super(throwable);
         this.errCd = errCd;
         this.errMsg = throwable.getLocalizedMessage();
     }
